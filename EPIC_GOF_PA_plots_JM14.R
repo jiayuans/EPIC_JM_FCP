@@ -12,14 +12,13 @@
 
 library(tidyverse)
 library(survival)
-setwd("C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan")
-getwd()
 
 #################################################################
 ## --------------------------------------------------------------
 ####### PA dataset
 ## --------------------------------------------------------------
-dat_pa <- read.csv( file="C:/UCHealth/RA/Project/EPIC-CF/Data/Source/Data-PA-cohort.csv")
+dirg <- "Z:/EJCStudents/ShiJ/EPIC-CF/Data/Source/"
+dat_pa <- read.csv(file=paste(dirg,"/Data-PA-cohort.csv",sep=""))
 dat_pa <- dat_pa[with(dat_pa, order(cffidno, VisitAge)),]
 head(dat_pa)
 summary(dat_pa)
@@ -67,7 +66,7 @@ dat_pa.cal$perc <- dat_pa.cal$n_pa/dat_pa.cal$n_visit
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model2_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model2_covariate_lt.csv")
 c0 <- round(result[4,5],2)
 c1 <- round(result[5,5],2)
 c2 <- round(result[6,5],2)
@@ -212,7 +211,7 @@ for (i in 1:length(Y_list)) {
 ####### PA plots - observed + simulated
 ## --------------------------------------------------------------
 
-png(file = "C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/figure_PA_GOF/GOF_PA_plots_overall_JMs14_n1000.png", width = 700, height = 700) 
+png(file = "Z:/EJCStudents/ShiJ/EPIC-CF/Result/figure_PA_GOF/GOF_PA_plots_overall_JMs14_n1000_NEW.png", width = 700, height = 700) 
 par(mfrow=c(2,2))
 plot(dat_pa.cal$age_yr,dat_pa.cal$perc, type = "l", xlab = "Age (Year)", ylab = "Proportion of PA", main="JM1", ylim = c(0,1)) ## renamed the JM, this is the one with random slope + intercept
 for (i in 1:length(Y_list)) {
@@ -235,7 +234,7 @@ legend(0,1, c("observed","simulated"), lty=c(1,1),col=c("black","pink"))
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model1_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model1_covariate_lt.csv")
 c0 <- round(result[4,5],2)
 c1 <- round(result[5,5],2)
 c2 <- round(result[6,5],2)
@@ -389,7 +388,7 @@ legend(0,1, c("observed","simulated"), lty=c(1,1),col=c("black","pink"))
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model0b_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model0b_covariate_lt.csv")
 c0 <- round(result[1,5],2)
 c1 <- round(result[2,5],2)
 c2 <- round(result[3,5],2)
@@ -542,7 +541,7 @@ legend(0,1, c("observed","simulated"), lty=c(1,1),col=c("black","pink"))
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model0a_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model0a_covariate_lt.csv")
 c0 <- round(result[1,5],2)
 c1 <- round(result[2,5],2)
 c2 <- round(result[3,5],2)

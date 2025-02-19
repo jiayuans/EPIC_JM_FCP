@@ -17,7 +17,8 @@ library(survival)
 ## --------------------------------------------------------------
 ####### PA dataset
 ## --------------------------------------------------------------
-dat_pa <- read.csv( file="C:/UCHealth/RA/Project/EPIC-CF/Data/Source/Data-PA-cohort.csv")
+dirg <- "Z:/EJCStudents/ShiJ/EPIC-CF/Data/Source/"
+dat_pa <- read.csv(file=paste(dirg,"/Data-PA-cohort.csv",sep=""))
 dat_pa <- dat_pa[with(dat_pa, order(cffidno, VisitAge)),]
 head(dat_pa)
 summary(dat_pa)
@@ -30,7 +31,7 @@ X.dat.pa <- dat_pa[!duplicated(dat_pa$cffidno,dat_pa$sexf,dat_pa$mut), c(2,6,8)]
 ## --------------------------------------------------------------
 ####### PE dataset
 ## --------------------------------------------------------------
-dat_pe0 <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Data/Source/Data-multiple-final-cohort-EPICstart-Bt-LengthPEx.csv")
+dat_pe0 <- read.csv(file=paste(dirg,"/Data-multiple-final-cohort-EPICstart-Bt-LengthPEx.csv",sep=""))
 head(dat_pe0)
 nrow(dat_pe0) 
 #M<- length(unique(dat_pe0$cffidno)) # 1734
@@ -49,7 +50,7 @@ dat_pe <- merge(X.dat.pa,dat_pe0,by="cffidno")
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model2_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model2_covariate_lt.csv")
 c0 <- round(result[4,5],2)
 c1 <- round(result[5,5],2)
 c2 <- round(result[6,5],2)
@@ -260,7 +261,7 @@ for (r in 1:I){
   num[r] <- length(unique(simdat.pe1$id))
 } 
 
-png(file = "C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/figure_PE_GOF/GOF_PE_plots_overall_JMs14_n1000.png", width = 700, height = 700) 
+png(file = "Z:/EJCStudents/ShiJ/EPIC-CF/Result/figure_PE_GOF/GOF_PE_plots_overall_JMs14_n1000.png_NEW", width = 700, height = 700) 
 par(mfrow=c(2,2))
 ## overall
 cox <- coxph(Surv(tstart,tend,status) ~ 1, data=dat_pe)
@@ -296,7 +297,7 @@ legend("topleft", c("observed","simulated"), lty=c(1,1), col = c("black","pink")
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model1_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model1_covariate_lt.csv")
 c0 <- round(result[4,5],2)
 c1 <- round(result[5,5],2)
 c2 <- round(result[6,5],2)
@@ -422,7 +423,7 @@ legend("topleft", c("observed","simulated"), lty=c(1,1), col = c("black","pink")
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model0b_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model0b_covariate_lt.csv")
 c0 <- round(result[1,5],2)
 c1 <- round(result[2,5],2)
 c2 <- round(result[3,5],2)
@@ -548,7 +549,7 @@ legend("topleft", c("observed","simulated"), lty=c(1,1), col = c("black","pink")
 ## --------------------------------------------------------------
 ####### Posterior results
 ## --------------------------------------------------------------
-result <- read.csv(file="C:/UCHealth/RA/Project/EPIC-CF/Analysis_Jiayuan/Result/Joint_PA_PEX_model_addrandom_rec_model0a_covariate_lt.csv")
+result <- read.csv(file="Z:/EJCStudents/ShiJ/EPIC-CF/Result/Joint_PA_PEX_model_addrandom_rec_model0a_covariate_lt.csv")
 c0 <- round(result[1,5],2)
 c1 <- round(result[2,5],2)
 c2 <- round(result[3,5],2)
